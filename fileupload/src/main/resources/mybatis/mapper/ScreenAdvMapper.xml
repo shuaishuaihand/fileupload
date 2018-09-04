@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agesun.mybatis.dao.ScreenAdvMapper">
+
+    <!--将上传的文件信息，保存到数据库中-->
+    <insert id="SaveFileEntiy" >
+        INSERT INTO f_advertisement(
+        <if test="advtype!=null">
+            adv_type,
+        </if>
+        <if test="advsize!=null">
+            adv_size,
+        </if>
+        <if test="advtime!=null">
+            adv_time,
+        </if>
+            create_time,
+        <if test="resolution!=null">
+            adv_resolving_power,
+        </if>
+        <if test="advurl!=null">
+            adv_url,
+        </if>
+        <if test="filename!=null">
+            file_name,
+        </if>
+        <if test="filetype!=null">
+            file_type,
+        </if>
+        <if test="fileurl!=null">
+            file_url
+        </if>
+        )
+        VALUES(
+        <if test="advtype!=null">
+            #{advtype},
+        </if>
+        <if test="advsize!=null">
+            #{advsize},
+        </if>
+        <if test="advtime!=null">
+            #{advtime},
+        </if>
+        NOW(),
+        <if test="resolution!=null">
+            #{resolution},
+        </if>
+        <if test="advurl!=null">
+            #{advurl},
+        </if>
+        <if test="filename!=null">
+            #{filename},
+        </if>
+        <if test="filetype!=null">
+            #{filetype},
+        </if>
+        <if test="fileurl!=null">
+            #{fileurl}
+        </if>
+        )
+    </insert>
+
+    <!--查询文件名相同的个数-->
+    <select id="selectSimilarFileNameNum" resultType="java.lang.Integer">
+       SELECT count(*)  from f_advertisement
+       WHERE file_name like #{filenamelike} OR file_name like #{filename}
+    </select>
+
+    <!--查询所有广告信息-->
+    <select id="getadverList" parameterType="com.agesun.mybatis.util.PageData" resultType="com.agesun.mybatis.util.PageData">
+        SELECT *  from f_advertisement
+        where 1=1
+        <if test="name != null and name != ''">AND  file_name like '%${name}%' </if>
+        <if test="adv_type != null and adv_type != ''">AND  adv_type=#{adv_type} </if>
+        ORDER BY create_time desc
+        LIMIT #{page},#{total}
+    </select>
+
+    <select id="getAllAdverNum"  resultType="java.lang.Integer">
+        SELECT count(*)  from f_advertisement
+    </select>
+
+
+    <select id="getAdvTotalCount" resultType="java.lang.Integer" parameterType="com.agesun.mybatis.util.PageData">
+        SELECT
+            count(id)
+        FROM
+            f_advertisement
+        WHERE
+            1=1
+        <if test="name != null and name != ''">AND  file_name like '%${name}%' </if>
+        <if test="adv_type != null and adv_type != ''">AND  adv_type=#{adv_type} </if>
+    </select>
+
+    <!--根据id删除广告信息-->
+    <delete id="deleteAdver">
+       DELETE FROM  f_advertisement WHERE id=#{id}
+    </delete>
+
+    <!--判断文件是否在使用过程中-->
+    <select id="isNotFileInUse" resultType="java.lang.Integer">
+         SELECT COUNT(*)
+         FROM f_adv_plan
+         WHERE adv_id=#{id}
+    </select>
+
+   <!-- 修改广告名称信息-->
+    <update id="updateFileNameById">
+        UPDATE f_advertisement SET file_name=#{filename}
+        WHERE id=#{id}
+    </update>
+
+    <!--检查广告名称信息是否重复-->
+    <select id="checkRepetAdvName" resultType="java.lang.Integer">
+        SELECT COUNT(*) from f_advertisement WHERE file_name =#{filename}
+    </select>
+
+    <select id="selectAdvById" resultType="com.agesun.mybatis.bean.FileEntity">
+        SELECT * FROM f_advertisement WHERE id=#{id}
+    </select>
+
+</mapper>

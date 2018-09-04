@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+ <mvc:annotation-driven></mvc:annotation-driven>
+
+    <util:properties id="config" location="classpath:config.properties"/>
+  <!-- SpringMVC只是控制网站跳转逻辑 -->
+  <!-- 只扫描控制器 -->
+<!--    <context:component-scan base-package="com.agesun.mybatis">
+   </context:component-scan> -->
+  <context:component-scan base-package="com.agesun.mybatis" use-default-filters="false">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+ </context:component-scan>
+ 
+ <!-- 视图解析器 -->
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   <property name="prefix" value="/WEB-INF/pages/"></property>
+   <property name="suffix" value=".jsp"></property>
+ </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- maxUploadSize:文件上传的最大值以byte为单位 最大文件总值20*500M  -->
+        <property name="maxUploadSize" value="10485760000"/>
+       <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+ 
+ <mvc:default-servlet-handler/>
+ 
+</beans>

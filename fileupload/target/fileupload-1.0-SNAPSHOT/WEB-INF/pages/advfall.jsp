@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/webuploader.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bootstrap/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/bootstrap/bootstrap-3.3.7/css/bootstrap.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/alert/sweetalert2.css"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css">
 <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/public/js/arttemplate.js"></script>--%>
 <style type="text/css">
    /* body{
@@ -214,22 +215,25 @@
     {{/waterfall}}
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery/jQuery-2.2.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/static/js/waterfall/waterfall.js"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/static/js/handlebars.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/webuploader.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/static/js/common/alertinfo.js"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/static/js/common/base-modal.js"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/static/js/common/base.js"></script>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/static/js/common/alertinfo.js"></script>
+        src="${pageContext.request.contextPath}/static/js/alert/sweetalert2.min.js"></script>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/static/js/alert/sweetalert2.js"></script>
+        src="${pageContext.request.contextPath}/static/js/alert/promise.auto.min.js"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/static/js/jquery/jquery.imageload.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/webuploader.js"></script>
+
 <script>
 
 
